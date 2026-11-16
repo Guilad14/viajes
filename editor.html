@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="es" data-page="editor">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#18362d">
+  <meta name="description" content="Explorá recorridos, perfiles de elevación y puntos de interés de tus expediciones de montaña.">
+  <title>Editor local · Mi Expedición</title>
+  <link rel="manifest" href="./manifest.webmanifest">
+  <link rel="icon" href="./icon-192.png" type="image/png">
+  <link rel="apple-touch-icon" href="./icon-192.png">
+  <link rel="stylesheet" href="./styles.css">
+  <script src="./core.js" defer></script>
+  <script src="./map.js" defer></script>
+  <script src="./app.js" defer></script>
+</head>
+<body>
+  <noscript><p class="notice">Activá JavaScript para abrir Mi Expedición.</p></noscript>
+  <a class="skip" href="#main">Saltar al contenido</a>
+  <header class="top"><div class="wrap top-content"><a href="./" class="brand" aria-label="Mi Expedición, inicio"><span class="brand-mark" aria-hidden="true">⌁</span><span>Mi Expedición</span></a>
+    <nav aria-label="Navegación principal">
+      <a class=""  href="./">Expediciones</a>
+      <a class="current" aria-current="page" href="./editor.html">Editor local</a>
+      <button id="install" class="nav-install" type="button">↓ Instalar<span class="install-word"> app</span></button>
+    </nav>
+  </div></header>
+  <main id="main">
+  <section class="intro"><div class="wrap intro-content"><div>
+    <p class="eyebrow"><span></span> Mi Expedición</p>
+    <h1>Editor local</h1>
+    <p>Prepará tus expediciones y elegí cuáles exportar al catálogo público.</p>
+  </div><a class="button outline intro-action" href="./">Ver catálogo ↗</a></div></section>
+  <div class="wrap editor-content">
+    <p class="notice">Los borradores se guardan en este navegador. Para compartirlos, exportá un catálogo y publicalo desde tu hosting.</p>
+    <div id="editor" class="editor-grid"><p class="muted">Abriendo borradores…</p></div>
+  </div>
+  <dialog id="poi-dialog" aria-labelledby="poi-title"><div class="dialog-body">
+    <h2 id="poi-title">Punto de interés</h2>
+    <form id="poi-form">
+      <label>Nombre<input name="name" type="text" required maxlength="140"></label>
+      <label>Tipo<select name="type"></select></label>
+      <div class="fields cols"><label>Latitud<input name="lat" type="number" min="-90" max="90" step="any" required></label>
+      <label>Longitud<input name="lon" type="number" min="-180" max="180" step="any" required></label></div>
+      <label>Altitud en metros<input name="ele" type="number" step="any"></label>
+      <label>Nota<textarea name="note" maxlength="1200" rows="3"></textarea></label>
+      <div class="actions"><button class="button primary" type="submit">Guardar punto</button><button class="button outline" type="button" data-close="poi-dialog">Cancelar</button></div>
+    </form>
+  </div></dialog>
+  <dialog id="publish-dialog" aria-labelledby="publish-title"><div class="dialog-body">
+    <h2 id="publish-title">Preparar publicación</h2>
+    <p>Elegí las expediciones guardadas que querés compartir. Revisá sus coordenadas, notas y cambios del itinerario antes de publicar el archivo.</p>
+    <form id="publish-form"><div id="publish-list"></div>
+      <label class="check review"><input type="checkbox" name="review" required> <span>Revisé los datos y quiero exportar esta selección.</span></label>
+      <div class="actions"><button class="button primary" type="submit">Descargar catálogo JSON</button><button class="button outline" type="button" data-close="publish-dialog">Cancelar</button></div>
+    </form>
+  </div></dialog>
+</main>
+  <footer class="footer"><div class="wrap footer-content"><a href="./" class="brand" aria-label="Mi Expedición, inicio"><span class="brand-mark" aria-hidden="true">⌁</span><span>Mi Expedición</span></a><span>Mapas y bitácoras de montaña</span><a href="https://github.com/Guilad14/viajes#mi-expedición" target="_blank" rel="noreferrer">Guía del proyecto ↗</a></div></footer>
+  <dialog id="install-help" aria-labelledby="install-title"><div class="dialog-body">
+    <h2 id="install-title">Instalar Mi Expedición</h2>
+    <p>En Android o computadora, abrí el menú de Chrome o Edge y buscá <strong>Instalar app</strong>. En iPhone o iPad, abrí la app en Safari, tocá <strong>Compartir</strong> y elegí <strong>Agregar a inicio</strong>.</p>
+    <p id="install-state" class="muted"></p>
+    <form method="dialog"><button class="button primary">Entendido</button></form>
+  </div></dialog>
+  <p id="toast" class="toast" role="status" hidden></p>
+</body>
+</html>
